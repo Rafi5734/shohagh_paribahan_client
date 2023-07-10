@@ -1,0 +1,29 @@
+.button_active_color{
+    color: #e74c3c;
+}
+.nav-fill {
+    background-color: #f6f7f8 !important;
+}
+
+.carousel-control-prev-icon {
+    background-color: grey;
+    padding: 25px;
+    border-radius: 50%;
+}
+.carousel-control-next-icon {
+    background-color: grey;
+    padding: 25px;
+    border-radius: 50%;
+}
+
+.tabComponent_tab_container__KrS9G{
+    display: flex;
+    justify-content: space-between !important;
+}
+
+.main_navbar{
+    backdrop-filter: blur(5px);
+    background-color: rgba(255, 255, 255, 0.5);
+    position: absolute;
+        top: 0;
+}
