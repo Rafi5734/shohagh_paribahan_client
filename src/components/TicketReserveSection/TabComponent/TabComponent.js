@@ -25,15 +25,15 @@ export default function TabComponent() {
           >
             <Container>
               <Row>
-                <Col sm={12} md={6} lg={2} className="">
-                  <Form.Select size="sm">
+                <Col sm={12} md={6} lg={2}>
+                  <Form.Select size="sm" className="mb-3">
                     <option>From</option>
                     <option value="1">One</option>
                     <option value="2">Two</option>
                     <option value="3">Three</option>
                   </Form.Select>
                 </Col>
-                <Col sm={12} md={6} lg={2} className="">
+                <Col sm={12} md={6} lg={2} className="mb-3">
                   <Form.Select size="sm">
                     <option>To</option>
                     <option value="1">One</option>
@@ -41,7 +41,7 @@ export default function TabComponent() {
                     <option value="3">Three</option>
                   </Form.Select>
                 </Col>
-                <Col sm={12} md={6} lg={2} className="">
+                <Col sm={12} md={6} lg={2} className="mb-3">
                   <InputGroup size="sm">
                     <Form.Control
                       type="date"
@@ -50,7 +50,7 @@ export default function TabComponent() {
                     />
                   </InputGroup>
                 </Col>
-                <Col sm={12} md={6} lg={2} className="">
+                <Col sm={12} md={6} lg={2} className="mb-3">
                   <Form.Select size="sm">
                     <option>Time Period</option>
                     <option value="1">One</option>
@@ -58,7 +58,7 @@ export default function TabComponent() {
                     <option value="3">Three</option>
                   </Form.Select>
                 </Col>
-                <Col sm={12} md={6} lg={2} className="">
+                <Col sm={12} md={6} lg={2} className="mb-3">
                   <Form.Select size="sm">
                     <option>Coach Type</option>
                     <option value="1">One</option>
@@ -66,7 +66,7 @@ export default function TabComponent() {
                     <option value="3">Three</option>
                   </Form.Select>
                 </Col>
-                <Col sm={12} md={6} lg={2} className="">
+                <Col sm={12} md={6} lg={2} className="mb-3">
                   <Button
                     variant="primary"
                     size="sm"
@@ -100,7 +100,7 @@ export default function TabComponent() {
             title="Ticket Operation"
           >
             <Row>
-              <Col sm={6}>
+              <Col sm={6} className="mb-3">
                 <InputGroup size="sm">
                   <Form.Control
                     aria-label="Small"
@@ -109,7 +109,7 @@ export default function TabComponent() {
                   />
                 </InputGroup>
               </Col>
-              <Col sm={6}>
+              <Col sm={6} className="mb-3">
                 <Button
                   variant="primary"
                   size="sm"
