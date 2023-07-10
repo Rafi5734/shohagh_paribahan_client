@@ -1,7 +1,10 @@
+"use client";
 import HeroNavbar from "@/components/HeroNavbar/HeroNavbar";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import Link from "next/link";
+
+import { usePathname } from "next/navigation";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,6 +14,7 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const pathname = usePathname();
   return (
     <html lang="en">
       <head>
@@ -47,7 +51,11 @@ export default function RootLayout({ children }) {
                   <li class="nav-item me-3">
                     <Link
                       href="/"
-                      className="m-0 p-0 button_active_color text-decoration-none"
+                      className={
+                        pathname === "/"
+                          ? "m-0 p-0 button_active_color text-decoration-none border-bottom border-danger"
+                          : "m-0 p-0 text-decoration-none"
+                      }
                     >
                       Home
                     </Link>
@@ -55,7 +63,11 @@ export default function RootLayout({ children }) {
                   <li class="nav-item me-3">
                     <Link
                       href="/locations"
-                      className=" m-0 p-0 text-decoration-none"
+                      className={
+                        pathname === "/locations"
+                          ? "m-0 p-0 button_active_color text-decoration-none border-bottom border-danger"
+                          : "m-0 p-0 text-decoration-none"
+                      }
                     >
                       Locations
                     </Link>
@@ -63,13 +75,24 @@ export default function RootLayout({ children }) {
                   <li class="nav-item me-3">
                     <Link
                       href="/contactUs"
-                      className=" m-0 p-0 text-decoration-none"
+                      className={
+                        pathname === "/contactUs"
+                          ? "m-0 p-0 button_active_color text-decoration-none border-bottom border-danger"
+                          : "m-0 p-0 text-decoration-none"
+                      }
                     >
                       Contact Us
                     </Link>
                   </li>
                   <li class="nav-item me-3">
-                    <Link href="/faq" className="m-0 p-0 text-decoration-none">
+                    <Link
+                      href="/faq"
+                      className={
+                        pathname === "/faq"
+                          ? "m-0 p-0 button_active_color text-decoration-none border-bottom border-danger"
+                          : "m-0 p-0 text-decoration-none"
+                      }
+                    >
                       FAQ
                     </Link>
                   </li>
