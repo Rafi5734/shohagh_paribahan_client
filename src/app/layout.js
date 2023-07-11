@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import Link from "next/link";
 
 import { usePathname } from "next/navigation";
+import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -102,6 +103,7 @@ export default function RootLayout({ children }) {
           </nav>
         </div>
         {children}
+        <Footer></Footer>
         <script
           src="https://cdn.jsdelivr.net/npm/react/umd/react.production.min.js"
           crossOrigin="anonymous"

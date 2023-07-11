@@ -15,7 +15,6 @@ export default function Home() {
       <TicketReserveSection></TicketReserveSection>
       <WhyShohaghParibahan></WhyShohaghParibahan>
       <Destinations></Destinations>
-      <Footer></Footer>
     </main>
   );
 }
