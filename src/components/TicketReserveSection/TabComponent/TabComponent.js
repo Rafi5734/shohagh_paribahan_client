@@ -8,7 +8,16 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 export default function TabComponent() {
+  const [show, setShow] = useState(false);
+  const [show2, setShow2] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const handleClose2 = () => setShow2(false);
+  const handleShow2 = () => setShow2(true);
   return (
     <Container className="mt-5 mb-5">
       <div className={styles.tab_container_wrapper}>
@@ -61,6 +70,22 @@ export default function TabComponent() {
                 <Col sm={12} md={6} lg={2} className="mb-3">
                   <Form.Select size="sm">
                     <option>Coach Type</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </Form.Select>
+                </Col>
+                <Col sm={12} md={6} lg={2} className="mb-3">
+                  <Form.Select size="sm">
+                    <option>Boarding Point</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </Form.Select>
+                </Col>
+                <Col sm={12} md={6} lg={2} className="mb-3">
+                  <Form.Select size="sm">
+                    <option>Dropping Point</option>
                     <option value="1">One</option>
                     <option value="2">Two</option>
                     <option value="3">Three</option>
@@ -137,6 +162,230 @@ export default function TabComponent() {
             </Row>
           </Tab>
         </Tabs>
+
+        <Container className="mt-5">
+          <h3 className="border-bottom border-danger pb-2">Available Trips</h3>
+          <div className="border rounded p-2">
+            <Row className="border-1">
+              <Col xs={6} sm={4} md={2} lg={2}>
+                <p className="mb-0 pb-0 fs-5">DHK</p>
+                <p className="m-0 p-0">Dhaka</p>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  className="m-0 p-0"
+                  width="30px"
+                  height="30px"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g
+                    id="SVGRepo_tracerCarrier"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></g>
+                  <g id="SVGRepo_iconCarrier">
+                    {" "}
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M12 3C12.5523 3 13 3.44772 13 4V17.5858L18.2929 12.2929C18.6834 11.9024 19.3166 11.9024 19.7071 12.2929C20.0976 12.6834 20.0976 13.3166 19.7071 13.7071L12.7071 20.7071C12.3166 21.0976 11.6834 21.0976 11.2929 20.7071L4.29289 13.7071C3.90237 13.3166 3.90237 12.6834 4.29289 12.2929C4.68342 11.9024 5.31658 11.9024 5.70711 12.2929L11 17.5858V4C11 3.44772 11.4477 3 12 3Z"
+                      fill="#000000"
+                    ></path>{" "}
+                  </g>
+                </svg>
+                <p className="mb-0 pb-0 fs-5">KHL</p>
+                <p className="m-0 p-0">Khulna</p>
+              </Col>
+              <Col xs={6} sm={4} md={2} lg={2} className="d-md-flex">
+                <div>
+                  <p className="mb-0 pb-0 fs-5">Reporting</p>
+                  <p className="m-0 pb-0">06:25 PM</p>
+                  <p className="m-0 pb-0">Thursday</p>
+                  <p className="m-0 pb-0">13 July, 2023</p>
+                </div>
+              </Col>
+              <Col xs={6} sm={4} md={2} lg={2}>
+                <div>
+                  <p className="mb-0 pb-0 fs-5">Departure</p>
+                  <p className="m-0 pb-0">06:25 PM</p>
+                  <p className="m-0 pb-0">Thursday</p>
+                  <p className="m-0 pb-0">13 July, 2023</p>
+                </div>
+              </Col>
+              <Col xs={6} sm={4} md={2} lg={2}>
+                <div>
+                  <p className="mb-0 pb-0 fs-5">Boarding</p>
+                  <p className="m-0 pb-0">NABINAGAR</p>
+                  <p className=""></p>
+                  <p className="mb-0 pb-0 fs-5">Destination</p>
+                  <p className="m-0 pb-0">KHULNA</p>
+                </div>
+              </Col>
+              <Col xs={6} sm={4} md={2} lg={2}>
+                <div>
+                  <p className="mb-0 pb-0 fs-5">Fare</p>
+                  <p className="m-0 pb-0">BDT</p>
+                  <p className=""></p>
+                  <p className="mb-0 pb-0 fs-5 fw-bold">650.00</p>
+                </div>
+              </Col>
+              <Col xs={6} sm={4} md={2} lg={2}>
+                <Button
+                  size="sm"
+                  variant="primary"
+                  className="mt-3"
+                  onClick={handleShow}
+                >
+                  View Seats
+                </Button>{" "}
+                <Modal size="lg" centered show={show} onHide={handleClose}>
+                  <Modal.Header closeButton>
+                    <Modal.Title>Modal heading</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    <Container>
+                      <Row>
+                        <Col xs={12} sm={12} md={4} lg={4}>
+                          .col-xs-12 .col-md-8
+                        </Col>
+                        <Col xs={12} sm={12} md={4} lg={4}>
+                          .col-xs-12 .col-md-8
+                        </Col>
+                        <Col xs={12} sm={12} md={4} lg={4}>
+                          .col-xs-12 .col-md-8
+                        </Col>
+                      </Row>
+                    </Container>
+                  </Modal.Body>
+                  <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                      Close
+                    </Button>
+                    <Button variant="primary" onClick={handleClose}>
+                      Save Changes
+                    </Button>
+                  </Modal.Footer>
+                </Modal>
+              </Col>
+            </Row>
+          </div>
+
+          <div className="border rounded p-2 mt-3">
+            <Row className="border-1">
+              <Col xs={6} sm={4} md={2} lg={2}>
+                <p className="mb-0 pb-0 fs-5">DHK</p>
+                <p className="m-0 p-0">Dhaka</p>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  className="m-0 p-0"
+                  width="30px"
+                  height="30px"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g
+                    id="SVGRepo_tracerCarrier"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></g>
+                  <g id="SVGRepo_iconCarrier">
+                    {" "}
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M12 3C12.5523 3 13 3.44772 13 4V17.5858L18.2929 12.2929C18.6834 11.9024 19.3166 11.9024 19.7071 12.2929C20.0976 12.6834 20.0976 13.3166 19.7071 13.7071L12.7071 20.7071C12.3166 21.0976 11.6834 21.0976 11.2929 20.7071L4.29289 13.7071C3.90237 13.3166 3.90237 12.6834 4.29289 12.2929C4.68342 11.9024 5.31658 11.9024 5.70711 12.2929L11 17.5858V4C11 3.44772 11.4477 3 12 3Z"
+                      fill="#000000"
+                    ></path>{" "}
+                  </g>
+                </svg>
+                <p className="mb-0 pb-0 fs-5">KHL</p>
+                <p className="m-0 p-0">Khulna</p>
+              </Col>
+              <Col xs={6} sm={4} md={2} lg={2} className="d-md-flex">
+                <div>
+                  <p className="mb-0 pb-0 fs-5">Reporting</p>
+                  <p className="m-0 pb-0">06:25 PM</p>
+                  <p className="m-0 pb-0">Thursday</p>
+                  <p className="m-0 pb-0">13 July, 2023</p>
+                </div>
+              </Col>
+              <Col xs={6} sm={4} md={2} lg={2}>
+                <div>
+                  <p className="mb-0 pb-0 fs-5">Departure</p>
+                  <p className="m-0 pb-0">06:25 PM</p>
+                  <p className="m-0 pb-0">Thursday</p>
+                  <p className="m-0 pb-0">13 July, 2023</p>
+                </div>
+              </Col>
+              <Col xs={6} sm={4} md={2} lg={2}>
+                <div>
+                  <p className="mb-0 pb-0 fs-5">Boarding</p>
+                  <p className="m-0 pb-0">NABINAGAR</p>
+                  <p className=""></p>
+                  <p className="mb-0 pb-0 fs-5">Destination</p>
+                  <p className="m-0 pb-0">KHULNA</p>
+                </div>
+              </Col>
+              <Col xs={6} sm={4} md={2} lg={2}>
+                <div>
+                  <p className="mb-0 pb-0 fs-5">Fare</p>
+                  <p className="m-0 pb-0">BDT</p>
+                  <p className=""></p>
+                  <p className="mb-0 pb-0 fs-5 fw-bold">650.00</p>
+                </div>
+              </Col>
+              <Col xs={6} sm={4} md={2} lg={2}>
+                <Button
+                  size="sm"
+                  variant="primary"
+                  className="mt-3"
+                  onClick={handleShow2}
+                >
+                  View Seats
+                </Button>{" "}
+                <Modal show={show2} onHide={handleClose2}>
+                  <Modal.Header closeButton>
+                    <Modal.Title>Modal heading</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    <Container>
+                      <Row>
+                        <Col xs={12} md={8}>
+                          .col-xs-12 .col-md-8
+                        </Col>
+                        <Col xs={6} md={4}>
+                          .col-xs-6 .col-md-4
+                        </Col>
+                      </Row>
+
+                      <Row>
+                        <Col xs={6} md={4}>
+                          .col-xs-6 .col-md-4
+                        </Col>
+                        <Col xs={6} md={4}>
+                          .col-xs-6 .col-md-4
+                        </Col>
+                        <Col xs={6} md={4}>
+                          .col-xs-6 .col-md-4
+                        </Col>
+                      </Row>
+                    </Container>
+                  </Modal.Body>
+                  <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose2}>
+                      Close
+                    </Button>
+                    <Button variant="primary" onClick={handleClose2}>
+                      Save Changes
+                    </Button>
+                  </Modal.Footer>
+                </Modal>
+              </Col>
+            </Row>
+          </div>
+        </Container>
       </div>
     </Container>
   );
