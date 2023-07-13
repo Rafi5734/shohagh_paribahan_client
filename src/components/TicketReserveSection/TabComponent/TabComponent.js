@@ -9,7 +9,51 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import Table from "react-bootstrap/Table";
 export default function TabComponent() {
+  const avilableTicketsInfo = new Array(
+    {
+      id: 1,
+      mainRoute: "dhaka",
+      mainRouteCODe: "DHK",
+      destinationRoute: "kulna",
+      destinationRouteCODe: "KHL",
+      reporting: {
+        time: "6.25pm",
+        day: "Friday",
+        date: "13/7/2023",
+      },
+      departure: {
+        time: "6.45 pm",
+        day: "Friday",
+        date: "13/7/2023",
+      },
+
+      boarding: "MALIBAGH",
+      fare: "650",
+    },
+    {
+      id: 2,
+      mainRoute: "dhaka",
+      mainRouteCODe: "DHK",
+      destinationRoute: "JESSORE",
+      destinationRouteCODe: "KHL",
+      reporting: {
+        time: "6.25pm",
+        day: "Friday",
+        date: "13/7/2023",
+      },
+      departure: {
+        time: "6.45 pm",
+        day: "Friday",
+        date: "13/7/2023",
+      },
+
+      boarding: "MALIBAGH",
+      fare: "650",
+    }
+  );
+
   const [show, setShow] = useState(false);
   const [show2, setShow2] = useState(false);
 
@@ -160,6 +204,58 @@ export default function TabComponent() {
                 </Button>{" "}
               </Col>
             </Row>
+
+            <div>
+              <h3 className="border-bottom pb-2">Reservation Details</h3>
+
+              <Table striped bordered hover>
+                {/* <thead>
+                  <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Username</th>
+                  </tr>
+                </thead> */}
+                <tbody>
+                  <tr>
+                    <td className="fw-bold">PNR</td>
+                    <td>046379080(1726)</td>
+                    <td className="fw-bold"> Reservation Status </td>
+                    <td>Canceled</td>
+                  </tr>
+                  <tr>
+                    <td className="fw-bold"> Trip Date </td>
+                    <td>14 July, 2023</td>
+                    <td className="fw-bold"> Total Fare </td>
+                    <td>BDT 650.0</td>
+                  </tr>
+                  <tr>
+                    <td className="fw-bold"> Coach No </td>
+                    <td>2420</td>
+                    <td className="fw-bold"> Coach Type </td>
+                    <td>Non AC</td>
+                  </tr>
+                  <tr>
+                    <td className="fw-bold"> Boarding </td>
+                    <td>MALIBAGH, DHAKA </td>
+                    <td className="fw-bold"> Destination </td>
+                    <td>JESSORE</td>
+                  </tr>
+                  <tr>
+                    <td className="fw-bold"> Reporting </td>
+                    <td>06:45 PM </td>
+                    <td className="fw-bold"> Departure </td>
+                    <td>07:00 PM</td>
+                  </tr>
+                  <tr>
+                    <td className="fw-bold"> Seats </td>
+                    <td>1C</td>
+                    <td className="fw-bold"> Cancel </td>
+                    <td className="text-danger">Not Applicable</td>
+                  </tr>
+                </tbody>
+              </Table>
+            </div>
           </Tab>
         </Tabs>
 
@@ -246,13 +342,13 @@ export default function TabComponent() {
                   <Modal.Body>
                     <Container>
                       <Row>
-                        <Col xs={12} sm={12} md={4} lg={4}>
+                        <Col xs={12} sm={12} md={5} lg={5}>
                           .col-xs-12 .col-md-8
                         </Col>
                         <Col xs={12} sm={12} md={4} lg={4}>
                           .col-xs-12 .col-md-8
                         </Col>
-                        <Col xs={12} sm={12} md={4} lg={4}>
+                        <Col xs={12} sm={12} md={3} lg={3}>
                           .col-xs-12 .col-md-8
                         </Col>
                       </Row>
@@ -341,11 +437,11 @@ export default function TabComponent() {
                   size="sm"
                   variant="primary"
                   className="mt-3"
-                  onClick={handleShow2}
+                  onClick={handleShow}
                 >
                   View Seats
                 </Button>{" "}
-                <Modal show={show2} onHide={handleClose2}>
+                <Modal show={show} onHide={handleClose}>
                   <Modal.Header closeButton>
                     <Modal.Title>Modal heading</Modal.Title>
                   </Modal.Header>
@@ -374,10 +470,10 @@ export default function TabComponent() {
                     </Container>
                   </Modal.Body>
                   <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose2}>
+                    <Button variant="secondary" onClick={handleClose}>
                       Close
                     </Button>
-                    <Button variant="primary" onClick={handleClose2}>
+                    <Button variant="primary" onClick={handleClose}>
                       Save Changes
                     </Button>
                   </Modal.Footer>

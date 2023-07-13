@@ -61,6 +61,30 @@ export default function RootLayout({ children }) {
                       Home
                     </Link>
                   </li>
+                  <li class="nav-item dropdown">
+                    <Link
+                      class="nav-link dropdown-toggle mt-0 pt-0 me-3 text-primary"
+                      href="#"
+                      id="navbarDropdown"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      Account
+                    </Link>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li>
+                        <Link class="dropdown-item" href="/update_profile">
+                          Edit Profile
+                        </Link>
+                      </li>
+                      <li>
+                        <Link class="dropdown-item" href="/change_password">
+                          Change Profile
+                        </Link>
+                      </li>
+                    </ul>
+                  </li>
                   <li class="nav-item me-3">
                     <Link
                       href="/locations"
