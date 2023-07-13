@@ -8,9 +8,12 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
 import Table from "react-bootstrap/Table";
+import Link from "next/link";
+
+import { useRouter } from "next/navigation";
 export default function TabComponent() {
+  const router = useRouter();
   const avilableTicketsInfo = new Array(
     {
       id: 1,
@@ -209,13 +212,6 @@ export default function TabComponent() {
               <h3 className="border-bottom pb-2">Reservation Details</h3>
 
               <Table striped bordered hover>
-                {/* <thead>
-                  <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Username</th>
-                  </tr>
-                </thead> */}
                 <tbody>
                   <tr>
                     <td className="fw-bold">PNR</td>
@@ -331,38 +327,10 @@ export default function TabComponent() {
                   size="sm"
                   variant="primary"
                   className="mt-3"
-                  onClick={handleShow}
+                  onClick={() => router.push("/seats")}
                 >
                   View Seats
                 </Button>{" "}
-                <Modal size="lg" centered show={show} onHide={handleClose}>
-                  <Modal.Header closeButton>
-                    <Modal.Title>Modal heading</Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>
-                    <Container>
-                      <Row>
-                        <Col xs={12} sm={12} md={5} lg={5}>
-                          .col-xs-12 .col-md-8
-                        </Col>
-                        <Col xs={12} sm={12} md={4} lg={4}>
-                          .col-xs-12 .col-md-8
-                        </Col>
-                        <Col xs={12} sm={12} md={3} lg={3}>
-                          .col-xs-12 .col-md-8
-                        </Col>
-                      </Row>
-                    </Container>
-                  </Modal.Body>
-                  <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                      Close
-                    </Button>
-                    <Button variant="primary" onClick={handleClose}>
-                      Save Changes
-                    </Button>
-                  </Modal.Footer>
-                </Modal>
               </Col>
             </Row>
           </div>
@@ -441,43 +409,6 @@ export default function TabComponent() {
                 >
                   View Seats
                 </Button>{" "}
-                <Modal show={show} onHide={handleClose}>
-                  <Modal.Header closeButton>
-                    <Modal.Title>Modal heading</Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>
-                    <Container>
-                      <Row>
-                        <Col xs={12} md={8}>
-                          .col-xs-12 .col-md-8
-                        </Col>
-                        <Col xs={6} md={4}>
-                          .col-xs-6 .col-md-4
-                        </Col>
-                      </Row>
-
-                      <Row>
-                        <Col xs={6} md={4}>
-                          .col-xs-6 .col-md-4
-                        </Col>
-                        <Col xs={6} md={4}>
-                          .col-xs-6 .col-md-4
-                        </Col>
-                        <Col xs={6} md={4}>
-                          .col-xs-6 .col-md-4
-                        </Col>
-                      </Row>
-                    </Container>
-                  </Modal.Body>
-                  <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                      Close
-                    </Button>
-                    <Button variant="primary" onClick={handleClose}>
-                      Save Changes
-                    </Button>
-                  </Modal.Footer>
-                </Modal>
               </Col>
             </Row>
           </div>
