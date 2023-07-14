@@ -3,6 +3,7 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Table from "react-bootstrap/Table";
+import Link from "next/link";
 
 export default function Seats() {
   const [blocks, setBlocks] = useState(Array(30).fill(false));
@@ -206,7 +207,10 @@ export default function Seats() {
                 <option>Small select</option>
               </Form.Select>
             </div>
-            <Button variant="outline-success">Continue</Button>{" "}
+
+            <Link href="/bookings" className="text-decoration-none">
+              <Button variant="outline-success mb-3">Continue</Button>
+            </Link>
           </Col>
         </Row>
       </Container>
