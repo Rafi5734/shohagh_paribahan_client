@@ -61,7 +61,7 @@ export default function RootLayout({ children }) {
                       Home
                     </Link>
                   </li>
-                  <li class="nav-item dropdown">
+                  {/* <li class="nav-item dropdown">
                     <Link
                       class="nav-link dropdown-toggle mt-0 pt-0 me-3 text-primary"
                       href="#"
@@ -84,7 +84,7 @@ export default function RootLayout({ children }) {
                         </Link>
                       </li>
                     </ul>
-                  </li>
+                  </li> */}
                   <li class="nav-item me-3">
                     <Link
                       href="/locations"

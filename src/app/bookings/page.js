@@ -27,7 +27,7 @@ export default function Bookings() {
         </h3>
         <Row>
           <Col xs={12} sm={4} md={4} lg={4} className="mb-3">
-            <Form
+            {/* <Form
               className="border p-3 rounded bg-light"
               noValidate
               validated={validated}
@@ -98,39 +98,10 @@ export default function Bookings() {
                 </Form.Group>
               </Row>
               <Button type="submit">Confirm Reservation</Button>
-            </Form>
+            </Form> */}
           </Col>
-          <Col xs={12} sm={4} md={4} lg={4} className="mb-3">
-            <div className="p-3 bg-light">
-              <h6 className="border-bottom pb-2">Journey Details</h6>
-              <p className="text-success fw-bold m-0 p-0">Dhaka - Jessor</p>
-              <p className="m-0 p-0 fs-6">Tungipara Express</p>
-              <p className="m-0 p-0 fs-6">Sat, 15 Jul 2023, 06:10 AM</p>
-              <p className="m-0 p-0 fs-6">
-                Seat No(s): <span className="text-success">C3, D3, D4</span>
-              </p>
-              <p className="m-0 p-0 fs-6">
-                Boarding at Gulistan Bus point , 06:10 AM
-              </p>
-            </div>
-          </Col>
-          <Col xs={12} sm={4} md={4} lg={4} className="mb-3">
-            <div className="p-3 bg-light">
-              <h6 className="border-bottom pb-2">Fare Details</h6>
-              <div className="d-flex justify-content-between border-bottom">
-                <p>Ticket Price</p>
-                <p>2000</p>
-              </div>
-              <div className="d-flex justify-content-between border-bottom">
-                <p>Discount</p>
-                <p>2000</p>
-              </div>
-              <div className="d-flex justify-content-between border-bottom">
-                <p className="fw-bold">Total</p>
-                <p className="fw-bold">2000</p>
-              </div>
-            </div>
-          </Col>
+          <Col xs={12} sm={4} md={4} lg={4} className="mb-3"></Col>
+          <Col xs={12} sm={4} md={4} lg={4} className="mb-3"></Col>
         </Row>
       </Container>
     </div>

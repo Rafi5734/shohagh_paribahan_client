@@ -7,12 +7,23 @@ import Link from "next/link";
 
 export default function Seats() {
   const [blocks, setBlocks] = useState(Array(30).fill(false));
+  const [validated, setValidated] = useState(false);
 
   const toggleBlock = (index) => {
     const newBlocks = [...blocks];
     console.log(newBlocks);
     newBlocks[index] = !newBlocks[index];
     setBlocks(newBlocks);
+  };
+
+  const handleSubmit = (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    setValidated(true);
   };
   return (
     <div className="mt-5 pt-5">
@@ -163,6 +174,7 @@ export default function Seats() {
             </div>
           </Col>
           <Col xs={12} sm={12} md={6} lg={4}>
+            <h3 className="border-bottom pb-2">Booking seats info.</h3>
             <Table striped bordered hover>
               <thead>
                 <tr>
@@ -199,6 +211,82 @@ export default function Seats() {
                 </tr>
               </tbody>
             </Table>
+
+            <div>
+              <h3 className="border-bottom pb-2">Passenger Information</h3>
+              <Form
+                className="border p-3 rounded bg-light"
+                noValidate
+                validated={validated}
+                onSubmit={handleSubmit}
+              >
+                <Row className="mb-3">
+                  <Form.Group
+                    className="mb-3"
+                    as={Col}
+                    md="12"
+                    controlId="validationCustom01"
+                  >
+                    <Form.Label>Full name</Form.Label>
+                    <Form.Control
+                      required
+                      type="text"
+                      placeholder="Full name"
+                      // defaultValue="Mark"
+                    />
+                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                    <Form.Control.Feedback type="invalid">
+                      Please provide a valid name.
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                  <Form.Group
+                    className="mb-3"
+                    as={Col}
+                    md="12"
+                    controlId="validationCustom02"
+                  >
+                    <Form.Label>Mobile number</Form.Label>
+                    <Form.Control
+                      required
+                      type="number"
+                      placeholder="018XXXXXXXX"
+                      // defaultValue="Otto"
+                    />
+                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                    <Form.Control.Feedback type="invalid">
+                      Please provide a valid phone number.
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                  <Form.Group
+                    className="mb-3"
+                    as={Col}
+                    md="12"
+                    controlId="validationCustom03"
+                  >
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control type="email" placeholder="email" required />
+                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                    <Form.Control.Feedback type="invalid">
+                      Please provide a valid email.
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                  <Form.Group as={Col} md="12" controlId="validationCustom03">
+                    <Form.Label>Payment Method</Form.Label>
+                    <Form.Select size="sm" aria-label="Default select example">
+                      <option>Open this select menu</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                    </Form.Select>
+                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                    <Form.Control.Feedback type="invalid">
+                      Please provide a valid email.
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                </Row>
+                <Button type="submit">Confirm Reservation</Button>
+              </Form>
+            </div>
           </Col>
           <Col xs={12} sm={12} md={6} lg={4}>
             <div className="mb-3">
@@ -208,9 +296,41 @@ export default function Seats() {
               </Form.Select>
             </div>
 
-            <Link href="/bookings" className="text-decoration-none">
-              <Button variant="outline-success mb-3">Continue</Button>
-            </Link>
+            <div className="p-3 bg-light">
+              <h6 className="border-bottom pb-2">Journey Details</h6>
+              <p className="text-success fw-bold m-0 p-0">Dhaka - Jessor</p>
+              <p className="m-0 p-0 fs-6">Tungipara Express</p>
+              <p className="m-0 p-0 fs-6">Sat, 15 Jul 2023, 06:10 AM</p>
+              <p className="m-0 p-0 fs-6">
+                Seat No(s): <span className="text-success">C3, D3, D4</span>
+              </p>
+              <p className="m-0 p-0 fs-6">
+                Boarding at Gulistan Bus point , 06:10 AM
+              </p>
+            </div>
+
+            <div className="p-3 bg-light mt-3">
+              <h6 className="border-bottom pb-2">Fare Details</h6>
+              <div className="d-flex justify-content-between border-bottom">
+                <p>Ticket Price</p>
+                <p>2000</p>
+              </div>
+              <div className="d-flex justify-content-between border-bottom">
+                <p>Discount</p>
+                <p>2000</p>
+              </div>
+              <div className="d-flex justify-content-between border-bottom">
+                <p className="fw-bold">Total</p>
+                <p className="fw-bold">2000</p>
+              </div>
+            </div>
+
+            {/* <Link href="/bookings" className="text-decoration-none mt-3">
+              
+            </Link> */}
+            {/* <Button variant="outline-success mb-3 mt-3">
+              Confirm reservation
+            </Button> */}
           </Col>
         </Row>
       </Container>

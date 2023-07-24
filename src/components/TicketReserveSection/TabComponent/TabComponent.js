@@ -123,22 +123,6 @@ export default function TabComponent() {
                   </Form.Select>
                 </Col>
                 <Col sm={12} md={6} lg={2} className="mb-3">
-                  <Form.Select size="sm">
-                    <option>Boarding Point</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                  </Form.Select>
-                </Col>
-                <Col sm={12} md={6} lg={2} className="mb-3">
-                  <Form.Select size="sm">
-                    <option>Dropping Point</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                  </Form.Select>
-                </Col>
-                <Col sm={12} md={6} lg={2} className="mb-3">
                   <Button
                     variant="primary"
                     size="sm"

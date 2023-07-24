@@ -1,6 +1,5 @@
 // import styles from './page.module.css'
 "use client";
-import Footer from "@/components/Footer";
 import HeroNavbar from "@/components/HeroNavbar/HeroNavbar";
 import CarouselsMain from "@/components/HeroSection/CarouselsMain";
 import TicketReserveSection from "@/components/TicketReserveSection/TicketReserveSection";
