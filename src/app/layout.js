@@ -128,6 +128,11 @@ export default function RootLayout({ children }) {
         </div>
         {children}
         <Footer></Footer>
+
+        <script
+          src="https://kit.fontawesome.com/eb8a4c75b0.js"
+          crossOrigin="anonymous"
+        ></script>
         <script
           src="https://cdn.jsdelivr.net/npm/react/umd/react.production.min.js"
           crossOrigin="anonymous"

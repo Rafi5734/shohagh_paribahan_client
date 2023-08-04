@@ -157,7 +157,7 @@ const Config = () => {
               controlId="validationCustom01"
               className="mb-3"
             >
-              <Form.Label>Departure place</Form.Label>
+              <Form.Label>Destination place</Form.Label>
               <Form.Control
                 required
                 type="text"
@@ -167,22 +167,6 @@ const Config = () => {
               <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               <Form.Control.Feedback type="invalid">
                 Please provide a valid location.
-              </Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group
-              as={Col}
-              xs="12"
-              sm="6"
-              md="4"
-              lg="4"
-              controlId="validationCustom02"
-              className="mb-3"
-            >
-              <Form.Label>Departure time</Form.Label>
-              <Form.Control required type="time" />
-              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-              <Form.Control.Feedback type="invalid">
-                Please provide a valid time.
               </Form.Control.Feedback>
             </Form.Group>
             <Form.Group
@@ -207,8 +191,6 @@ const Config = () => {
                 Please provide price.
               </Form.Control.Feedback>
             </Form.Group>
-          </Row>
-          <Row className="mb-3">
             <Form.Group
               as={Col}
               xs="12"
@@ -225,6 +207,8 @@ const Config = () => {
                 // defaultValue="Mark"
               />
             </Form.Group>
+          </Row>
+          <Row className="mb-3">
             <Form.Group
               as={Col}
               xs="12"
