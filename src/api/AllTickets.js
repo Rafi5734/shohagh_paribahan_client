@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const allTickets = createApi({
   reducerPath: "all_tickets",
-  refetchOnFocus: true,
+  // refetchOnFocus: true,
   baseQuery: fetchBaseQuery({
     baseUrl: "https://jsonplaceholder.typicode.com/",
   }),
