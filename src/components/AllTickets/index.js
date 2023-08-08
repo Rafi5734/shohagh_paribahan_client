@@ -11,8 +11,8 @@ const index = () => {
     <div>
       <h3 className="mt-3 text-center">All tickets</h3>
       <hr />
-      <div className="ps-2 pe-2">
-        <Table striped bordered hover>
+      <div className="ps-2 pe-2 overflow-auto">
+        <Table striped bordered hover className="overflow-auto">
           <thead>
             <tr>
               <th>#</th>
