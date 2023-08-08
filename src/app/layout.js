@@ -6,6 +6,7 @@ import Link from "next/link";
 
 import { usePathname } from "next/navigation";
 import Footer from "@/components/Footer";
+import Providers from "@/Store/Providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -126,7 +127,8 @@ export default function RootLayout({ children }) {
             </div>
           </nav>
         </div>
-        {children}
+        <Providers>{children}</Providers>
+
         <Footer></Footer>
 
         <script
