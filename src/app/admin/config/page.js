@@ -133,11 +133,11 @@ const Config = () => {
               controlId="validationDate"
               className="mb-2"
             >
-              <Form.Label>Reporting place</Form.Label>
+              <Form.Label>Departure time</Form.Label>
               <Form.Control
                 required
-                type="text"
-                placeholder="Reporting place"
+                type="time"
+                placeholder="Departure time"
                 // defaultValue="Mark"
               />
 
@@ -161,7 +161,7 @@ const Config = () => {
               <Form.Control
                 required
                 type="text"
-                placeholder="Departure place"
+                placeholder="Destination place"
                 // defaultValue="Mark"
               />
               <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -219,7 +219,11 @@ const Config = () => {
               className="mb-3"
             >
               <Form.Label>Seats</Form.Label>
-              <Form.Control required type="number" />
+              <Form.Control
+                required
+                type="number"
+                placeholder="Enter bus seats number"
+              />
               <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               <Form.Control.Feedback type="invalid">
                 Please provide a valid number.
