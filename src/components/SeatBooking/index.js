@@ -56,6 +56,8 @@ const SeatBooking = () => {
 
           <Row>
             <Col xs={12} sm={12} md={6} lg={4}>
+              <h3 className="text-center">Bus seats plan</h3>
+              <hr />
               <div className="border mb-5 pb-3 pe-0">
                 <Container>
                   <Row className="pt-3 pb-3">
@@ -92,7 +94,6 @@ const SeatBooking = () => {
                     <th>#</th>
                     <th>Seats</th>
                     <th>Fare</th>
-                    <th>Class</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -100,25 +101,21 @@ const SeatBooking = () => {
                     <td>1</td>
                     <td>01</td>
                     <td>650</td>
-                    <td>Economic</td>
                   </tr>
                   <tr>
                     <td>1</td>
                     <td>07</td>
                     <td>650</td>
-                    <td>Economic</td>
                   </tr>
                   <tr>
                     <td>1</td>
                     <td>09</td>
                     <td>650</td>
-                    <td>Economic</td>
                   </tr>
                   <tr>
                     <th></th>
                     <th>Total</th>
                     <th> = 1200</th>
-                    <th></th>
                   </tr>
                 </tbody>
               </Table>

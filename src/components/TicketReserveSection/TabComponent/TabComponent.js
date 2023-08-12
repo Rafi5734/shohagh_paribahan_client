@@ -10,52 +10,11 @@ import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
 import Link from "next/link";
+import districtNames from "./DistrictName";
 
 import { useRouter } from "next/navigation";
 export default function TabComponent() {
   const router = useRouter();
-  const avilableTicketsInfo = new Array(
-    {
-      id: 1,
-      mainRoute: "dhaka",
-      mainRouteCODe: "DHK",
-      destinationRoute: "kulna",
-      destinationRouteCODe: "KHL",
-      reporting: {
-        time: "6.25pm",
-        day: "Friday",
-        date: "13/7/2023",
-      },
-      departure: {
-        time: "6.45 pm",
-        day: "Friday",
-        date: "13/7/2023",
-      },
-
-      boarding: "MALIBAGH",
-      fare: "650",
-    },
-    {
-      id: 2,
-      mainRoute: "dhaka",
-      mainRouteCODe: "DHK",
-      destinationRoute: "JESSORE",
-      destinationRouteCODe: "KHL",
-      reporting: {
-        time: "6.25pm",
-        day: "Friday",
-        date: "13/7/2023",
-      },
-      departure: {
-        time: "6.45 pm",
-        day: "Friday",
-        date: "13/7/2023",
-      },
-
-      boarding: "MALIBAGH",
-      fare: "650",
-    }
-  );
 
   const [show, setShow] = useState(false);
   const [show2, setShow2] = useState(false);
@@ -83,18 +42,22 @@ export default function TabComponent() {
               <Row>
                 <Col sm={12} md={6} lg={2}>
                   <Form.Select size="sm" className="mb-3">
-                    <option>From</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <option className="fw-bold">From</option>
+                    {districtNames?.map((districtName, index) => (
+                      <option key={index} value={districtName}>
+                        {districtName}
+                      </option>
+                    ))}
                   </Form.Select>
                 </Col>
                 <Col sm={12} md={6} lg={2} className="mb-3">
                   <Form.Select size="sm">
-                    <option>To</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <option className="fw-bold">To</option>
+                    {districtNames?.map((districtName, index) => (
+                      <option key={index} value={districtName}>
+                        {districtName}
+                      </option>
+                    ))}
                   </Form.Select>
                 </Col>
                 <Col sm={12} md={6} lg={2} className="mb-3">
@@ -108,17 +71,9 @@ export default function TabComponent() {
                 </Col>
                 <Col sm={12} md={6} lg={2} className="mb-3">
                   <Form.Select size="sm">
-                    <option>Time Period</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                  </Form.Select>
-                </Col>
-                <Col sm={12} md={6} lg={2} className="mb-3">
-                  <Form.Select size="sm">
-                    <option>Coach Type</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
+                    <option className="fw-bold">Coach Type</option>
+                    <option value="ac">AC</option>
+                    <option value="non-ac">Non-AC</option>
                     <option value="3">Three</option>
                   </Form.Select>
                 </Col>
@@ -130,21 +85,7 @@ export default function TabComponent() {
                     data-bs-placement="top"
                     title="Search your route"
                   >
-                    <svg
-                      width="15px"
-                      height="15px"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M20 20L15.8033 15.8033M18 10.5C18 6.35786 14.6421 3 10.5 3C6.35786 3 3 6.35786 3 10.5C3 14.6421 6.35786 18 10.5 18C14.6421 18 18 14.6421 18 10.5Z"
-                        stroke="#ffffff"
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
+                    <i className="fa-solid fa-magnifying-glass"></i>
                   </Button>{" "}
                 </Col>
               </Row>
@@ -173,21 +114,7 @@ export default function TabComponent() {
                   data-bs-placement="top"
                   title="Search"
                 >
-                  <svg
-                    width="15px"
-                    height="15px"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M20 20L15.8033 15.8033M18 10.5C18 6.35786 14.6421 3 10.5 3C6.35786 3 3 6.35786 3 10.5C3 14.6421 6.35786 18 10.5 18C14.6421 18 18 14.6421 18 10.5Z"
-                      stroke="#ffffff"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
+                  <i className="fa-solid fa-magnifying-glass"></i>
                 </Button>{" "}
               </Col>
             </Row>
