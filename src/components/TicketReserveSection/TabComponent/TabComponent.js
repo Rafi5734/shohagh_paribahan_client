@@ -13,8 +13,16 @@ import Link from "next/link";
 import districtNames from "./DistrictName";
 
 import { useRouter } from "next/navigation";
+
+
 export default function TabComponent() {
   const router = useRouter();
+
+  const [validated, setValidated] = useState(false);
+  const [fromValue, setFromValue] = useState();
+  const [toValue, setToValue] = useState();
+  const [journeyDate, setJournalDate] = useState();
+  const [coachType, setCoachType] = useState();
 
   const [show, setShow] = useState(false);
   const [show2, setShow2] = useState(false);
@@ -24,6 +32,26 @@ export default function TabComponent() {
 
   const handleClose2 = () => setShow2(false);
   const handleShow2 = () => setShow2(true);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    const ticketData = {
+      from: fromValue,
+      to: toValue,
+      journeyDate: journeyDate,
+      coachType: coachType,
+    };
+
+    console.log(ticketData);
+
+    setValidated(true);
+  };
   return (
     <Container className="mt-5 mb-5">
       <div className={styles.tab_container_wrapper}>
@@ -39,56 +67,78 @@ export default function TabComponent() {
             title="Buy Ticket"
           >
             <Container>
-              <Row>
-                <Col sm={12} md={6} lg={2}>
-                  <Form.Select size="sm" className="mb-3">
-                    <option className="fw-bold">From</option>
-                    {districtNames?.map((districtName, index) => (
-                      <option key={index} value={districtName}>
-                        {districtName}
-                      </option>
-                    ))}
-                  </Form.Select>
-                </Col>
-                <Col sm={12} md={6} lg={2} className="mb-3">
-                  <Form.Select size="sm">
-                    <option className="fw-bold">To</option>
-                    {districtNames?.map((districtName, index) => (
-                      <option key={index} value={districtName}>
-                        {districtName}
-                      </option>
-                    ))}
-                  </Form.Select>
-                </Col>
-                <Col sm={12} md={6} lg={2} className="mb-3">
-                  <InputGroup size="sm">
-                    <Form.Control
-                      type="date"
-                      aria-label="Small"
-                      aria-describedby="inputGroup-sizing-sm"
-                    />
-                  </InputGroup>
-                </Col>
-                <Col sm={12} md={6} lg={2} className="mb-3">
-                  <Form.Select size="sm">
-                    <option className="fw-bold">Coach Type</option>
-                    <option value="ac">AC</option>
-                    <option value="non-ac">Non-AC</option>
-                    <option value="3">Three</option>
-                  </Form.Select>
-                </Col>
-                <Col sm={12} md={6} lg={2} className="mb-3">
-                  <Button
-                    variant="primary"
-                    size="sm"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="top"
-                    title="Search your route"
-                  >
-                    <i className="fa-solid fa-magnifying-glass"></i>
-                  </Button>{" "}
-                </Col>
-              </Row>
+              <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                <Row>
+                  <Col sm={12} md={6} lg={2}>
+                    <Form.Select
+                      size="sm"
+                      className="mb-3"
+                      onChange={(e) => {
+                        setFromValue(e.target.value);
+                      }}
+                    >
+                      <option className="fw-bold">From</option>
+                      {districtNames?.map((districtName, index) => (
+                        <option key={index} value={districtName}>
+                          {districtName}
+                        </option>
+                      ))}
+                    </Form.Select>
+                  </Col>
+                  <Col sm={12} md={6} lg={2} className="mb-3">
+                    <Form.Select
+                      size="sm"
+                      onChange={(e) => {
+                        setToValue(e.target.value);
+                      }}
+                    >
+                      <option className="fw-bold">To</option>
+                      {districtNames?.map((districtName, index) => (
+                        <option key={index} value={districtName}>
+                          {districtName}
+                        </option>
+                      ))}
+                    </Form.Select>
+                  </Col>
+                  <Col sm={12} md={6} lg={2} className="mb-3">
+                    <InputGroup size="sm">
+                      <Form.Control
+                        type="date"
+                        aria-label="Small"
+                        aria-describedby="inputGroup-sizing-sm"
+                        onChange={(e) => {
+                          setJournalDate(e.target.value);
+                        }}
+                      />
+                    </InputGroup>
+                  </Col>
+                  <Col sm={12} md={6} lg={2} className="mb-3">
+                    <Form.Select
+                      size="sm"
+                      onChange={(e) => {
+                        setCoachType(e.target.value);
+                      }}
+                    >
+                      <option className="fw-bold">Coach Type</option>
+                      <option value="ac">AC</option>
+                      <option value="non-ac">Non-AC</option>
+                      <option value="3">Three</option>
+                    </Form.Select>
+                  </Col>
+                  <Col sm={12} md={6} lg={2} className="mb-3">
+                    <Button
+                      variant="primary"
+                      size="sm"
+                      type="submit"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      title="Search your route"
+                    >
+                      <i className="fa-solid fa-magnifying-glass"></i>
+                    </Button>{" "}
+                  </Col>
+                </Row>
+              </Form>
             </Container>
           </Tab>
           <Tab
@@ -109,6 +159,7 @@ export default function TabComponent() {
               <Col sm={6} className="mb-3">
                 <Button
                   variant="primary"
+                  type="submit"
                   size="sm"
                   data-bs-toggle="tooltip"
                   data-bs-placement="top"
