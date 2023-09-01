@@ -41,14 +41,22 @@ export default function TabComponent() {
       event.stopPropagation();
     }
 
-    const ticketData = {
-      from: fromValue,
-      to: toValue,
-      journeyDate: journeyDate,
-      coachType: coachType,
-    };
-
-    console.log(ticketData);
+    if (fromValue && toValue && journeyDate && coachType) {
+      if (fromValue === toValue) {
+        alert("Please select your correct locations");
+      } else {
+        const ticketData = {
+          from: fromValue,
+          to: toValue,
+          journeyDate: journeyDate,
+          coachType: coachType,
+        };
+        console.log(ticketData);
+        alert("thank for with us");
+      }
+    } else {
+      alert("Please select all the options");
+    }
 
     setValidated(true);
   };
