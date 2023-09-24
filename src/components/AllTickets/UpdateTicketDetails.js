@@ -5,31 +5,41 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import TicketDetailsForm from "./TicketDetailsForm";
 
-const TicketDetails = () => {
+const TicketDetails = ({ id }) => {
   const [show, setShow] = useState(false);
+
+  const handleUpdateDetails = (id) => {
+    setShow(true);
+    console.log("Update Details", id);
+  };
+
+  // console.log(id);
   return (
     <div>
-      <OverlayTrigger
-        overlay={<Tooltip id="tooltip-disabled">Update Details</Tooltip>}
-      >
-        <span className="d-inline-block">
-          <Button
-            variant="primary"
-            onClick={() => setShow(true)}
-            className="me-1"
-          >
-            <i
-              className="fa-solid fa-pen-to-square "
-              style={{ color: "white" }}
-            ></i>
-          </Button>{" "}
-        </span>
-      </OverlayTrigger>
+      <>
+        <OverlayTrigger
+          overlay={<Tooltip id="tooltip-disabled">Update Details</Tooltip>}
+        >
+          <span className="d-inline-block">
+            <Button
+              variant="primary"
+              // onClick={() => }
+              className="me-1"
+              onClick={() => handleUpdateDetails(id)}
+            >
+              <i
+                className="fa-solid fa-pen-to-square "
+                style={{ color: "white" }}
+              ></i>
+            </Button>{" "}
+          </span>
+        </OverlayTrigger>
+      </>
 
       <Modal
         show={show}
         onHide={() => setShow(false)}
-        dialogClassName="modal-90w"
+        dialogClassName="modal-100w"
         aria-labelledby="example-custom-modal-styling-title"
         style={{ width: "100%" }}
       >

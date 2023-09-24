@@ -4,7 +4,7 @@ import { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Table from "react-bootstrap/Table";
 import Link from "next/link";
-import SeatBooking from "@/components/SeatBooking";
+import SeatBooking from "@/components/SeatBooking/Index";
 
 export default function Seats() {
   const [blocks, setBlocks] = useState(Array(30).fill(false));

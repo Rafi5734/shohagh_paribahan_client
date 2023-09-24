@@ -1,161 +1,152 @@
-import React from "react";
-import { Container } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Container, Form, InputGroup } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import Pagination from "react-bootstrap/Pagination";
-import TicketDetails from "./TicketDetails";
-const index = () => {
+import UpdateTicketDetails from "./UpdateTicketDetails";
+import { useGetAllTicketsQuery } from "@/api/AllTickets";
+import Placeholder from "react-bootstrap/Placeholder";
+import { AiOutlineSearch } from "react-icons/ai";
+import AdminViewTicketDetails from "./AdminViewTicketDetails/AdminViewTicketDetails";
+
+const Index = () => {
+  const { data, isLoading, isError } = useGetAllTicketsQuery();
+  const [searchData, setSearchData] = useState("");
+  const [mainData, setMainData] = useState();
+
+  const handleSearch = () => {
+    // console.log("onchange", searchData);
+
+    const filterTicket = data.filter(
+      (item) => item.from.toLowerCase() === searchData.toLowerCase()
+    );
+    if (filterTicket.length > 0) {
+      setMainData(filterTicket);
+    } else {
+      setMainData(data);
+    }
+    // console.log("filter", filterTicket);
+    setSearchData("");
+  };
+
+  useEffect(() => {
+    setMainData(data);
+  }, [data]);
+
+  // console.log(data);
   return (
     <div>
       <h3 className="mt-3 text-center">All tickets</h3>
       <hr />
+      <div className="w-50 ps-5">
+        <Form.Label>Search Ticket</Form.Label>
+        <InputGroup className="mb-3">
+          <Form.Control
+            placeholder="Ex: Dhaka"
+            aria-label="Recipient's username"
+            aria-describedby="basic-addon2"
+            type="search"
+            value={searchData}
+            onChange={(e) => setSearchData(e.target.value)}
+          />
+          <Button variant="outline-primary" onClick={handleSearch}>
+            <AiOutlineSearch />
+          </Button>{" "}
+        </InputGroup>
+      </div>
       <div className="ps-2 pe-2 overflow-auto">
-        <Table striped bordered hover className="overflow-auto">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>From-to</th>
-              <th>Date</th>
-              <th>Boarding time & place</th>
-              <th>Destination time & place</th>
-              <th>Fare</th>
-              <th>Seats</th>
-              <th>Coach type</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>
-                <div>
-                  <p className="m-0">Dhaka-</p>
-                  <p className="m-0">Khulna</p>
-                </div>
-              </td>
-              <td>04/08/2023</td>
-              <td>
-                <div>
-                  <p className="m-0">Malibugh-</p>
-                  <p className="m-0">9:00 PM</p>
-                </div>
-              </td>
-              <td>
-                <div>
-                  <p className="m-0">Fulbaria-</p>
-                  <p className="m-0">9:00 PM</p>
-                </div>
-              </td>
-              <td>650</td>
-              <td>65</td>
-              <td>AC</td>
-              <td>
-                <div className="d-flex">
-                  <TicketDetails />
-                  <OverlayTrigger
-                    overlay={
-                      <Tooltip id="tooltip-disabled">Delete ticket</Tooltip>
-                    }
-                  >
-                    <span className="d-inline-block">
-                      <Button variant="danger" className="me-1">
-                        <i
-                          class="fa-solid fa-trash-can"
-                          style={{ color: "white" }}
-                        ></i>
-                      </Button>{" "}
-                    </span>
-                  </OverlayTrigger>
-                  <OverlayTrigger
-                    overlay={
-                      <Tooltip id="tooltip-disabled">View Details</Tooltip>
-                    }
-                  >
-                    <span className="d-inline-block">
-                      <Button variant="success" className="me-1">
-                        <i class="fa-solid fa-circle-info"></i>
-                        {/* <i
-                          className="fa-solid fa-pen-to-square "
-                          style={{ color: "white" }}
-                        ></i> */}
-                      </Button>{" "}
-                    </span>
-                  </OverlayTrigger>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>
-                <div>
-                  <p className="m-0">Chottogram-</p>
-                  <p className="m-0">Barisal</p>
-                </div>
-              </td>
-              <td>08/08/2023</td>
-              <td>
-                <div>
-                  <p className="m-0">Saydabad-</p>
-                  <p className="m-0">10:00 AM</p>
-                </div>
-              </td>
-              <td>
-                <div>
-                  <p className="m-0">Bus stand-</p>
-                  <p className="m-0">12:00 PM</p>
-                </div>
-              </td>
-              <td>750</td>
-              <td>20</td>
-              <td>AC</td>
-              <td>
-                <div>
-                  <OverlayTrigger
-                    overlay={
-                      <Tooltip id="tooltip-disabled">Edit ticket</Tooltip>
-                    }
-                  >
-                    <span className="d-inline-block">
-                      <Button variant="primary" className="me-1">
-                        <i
-                          className="fa-solid fa-pen-to-square "
-                          style={{ color: "white" }}
-                        ></i>
-                      </Button>{" "}
-                    </span>
-                  </OverlayTrigger>
-                  <OverlayTrigger
-                    overlay={
-                      <Tooltip id="tooltip-disabled">Delete ticket</Tooltip>
-                    }
-                  >
-                    <span className="d-inline-block">
-                      <Button variant="danger" className="me-1">
-                        <i
-                          class="fa-solid fa-trash-can"
-                          style={{ color: "white" }}
-                        ></i>
-                      </Button>{" "}
-                    </span>
-                  </OverlayTrigger>
-                  <OverlayTrigger
-                    overlay={
-                      <Tooltip id="tooltip-disabled">View Details</Tooltip>
-                    }
-                  >
-                    <span className="d-inline-block">
-                      <Button variant="success" className="me-1">
-                        <i class="fa-solid fa-circle-info"></i>
-                      </Button>{" "}
-                    </span>
-                  </OverlayTrigger>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </Table>
+        {isLoading ? (
+          <>
+            <Placeholder as="p" animation="glow">
+              <Placeholder xs={12} />
+            </Placeholder>
+            <Placeholder as="p" animation="glow">
+              <Placeholder xs={12} />
+            </Placeholder>
+            <Placeholder as="p" animation="glow">
+              <Placeholder xs={12} />
+            </Placeholder>
+            <Placeholder as="p" animation="glow">
+              <Placeholder xs={12} />
+            </Placeholder>
+            <Placeholder as="p" animation="glow">
+              <Placeholder xs={12} />
+            </Placeholder>
+          </>
+        ) : (
+          <>
+            <Table striped bordered hover className="overflow-auto">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>From-to</th>
+                  <th>Date</th>
+                  <th>Boarding time & place</th>
+                  <th>Destination place</th>
+                  <th>Fare</th>
+                  <th>Seats</th>
+                  <th>Coach type</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {mainData?.map((j, index) => (
+                  <>
+                    <tr key={index}>
+                      <td>{++index}</td>
+                      <td>
+                        <div>
+                          <p className="m-0">{j?.from}-</p>
+                          <p className="m-0">{j?.to}</p>
+                        </div>
+                      </td>
+                      <td>{j?.journeyDate}</td>
+                      <td>
+                        <div>
+                          <p className="m-0">{j?.boardingPlace}-</p>
+                          <p className="m-0">{j?.boardingTime}</p>
+                        </div>
+                      </td>
+                      <td>
+                        <div>
+                          <p className="m-0">{j?.destinationPlace}</p>
+                        </div>
+                      </td>
+                      <td>{j?.fare}</td>
+                      <td>{j?.seats}</td>
+                      <td>{j?.coachType}</td>
+                      <td>
+                        <div className="d-flex">
+                          <UpdateTicketDetails id={j?._id} />
+                          <OverlayTrigger
+                            overlay={
+                              <Tooltip id="tooltip-disabled">
+                                Delete ticket
+                              </Tooltip>
+                            }
+                          >
+                            <span className="d-inline-block">
+                              <Button variant="danger" className="me-1">
+                                <i
+                                  class="fa-solid fa-trash-can"
+                                  style={{ color: "white" }}
+                                ></i>
+                              </Button>{" "}
+                            </span>
+                          </OverlayTrigger>
+                          <AdminViewTicketDetails id={j?._id} />
+                          {/*  */}
+                        </div>
+                      </td>
+                    </tr>
+                  </>
+                ))}
+              </tbody>
+            </Table>
+          </>
+        )}
 
         <Pagination>
           <Pagination.First />
@@ -179,4 +170,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;

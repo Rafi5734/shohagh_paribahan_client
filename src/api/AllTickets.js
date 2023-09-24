@@ -4,12 +4,12 @@ export const allTickets = createApi({
   reducerPath: "all_tickets",
   // refetchOnFocus: true,
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://jsonplaceholder.typicode.com/",
+    baseUrl: "http://localhost:8008",
   }),
   tagTypes: ["all_tickets"],
   endpoints: (builder) => ({
     getAllTickets: builder.query({
-      query: () => `todos`,
+      query: () => `/admin/config`,
       providesTags: ["all_tickets"],
     }),
   }),
