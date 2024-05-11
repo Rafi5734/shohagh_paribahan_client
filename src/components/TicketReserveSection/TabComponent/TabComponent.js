@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 import styles from "./tabComponent.module.css";
 import { Container } from "react-bootstrap";
@@ -13,7 +14,7 @@ import Link from "next/link";
 import districtNames from "./DistrictName";
 
 import { useRouter } from "next/navigation";
-
+import { toast } from "react-toastify";
 
 export default function TabComponent() {
   const router = useRouter();
@@ -23,6 +24,7 @@ export default function TabComponent() {
   const [toValue, setToValue] = useState();
   const [journeyDate, setJournalDate] = useState();
   const [coachType, setCoachType] = useState();
+  const [checkLocation, setCheckLocation] = useState(true);
 
   const [show, setShow] = useState(false);
   const [show2, setShow2] = useState(false);
@@ -32,6 +34,23 @@ export default function TabComponent() {
 
   const handleClose2 = () => setShow2(false);
   const handleShow2 = () => setShow2(true);
+
+  if (fromValue && toValue) {
+    if (fromValue === toValue) {
+      setCheckLocation(true);
+      setToValue("");
+      toast.error("Please select correct location", {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -43,8 +62,19 @@ export default function TabComponent() {
 
     if (fromValue && toValue && journeyDate && coachType) {
       if (fromValue === toValue) {
-        alert("Please select your correct locations");
+        setCheckLocation(true);
+        toast.error("Please select correct location", {
+          position: "top-right",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       } else {
+        setCheckLocation(false);
         const ticketData = {
           from: fromValue,
           to: toValue,
@@ -52,25 +82,47 @@ export default function TabComponent() {
           coachType: coachType,
         };
         console.log(ticketData);
-        alert("thank for with us");
+        toast.success("See Available Trips", {
+          position: "top-right",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       }
     } else {
-      alert("Please select all the options");
+      setCheckLocation(false);
+      toast.warn("Please select & check all options", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }
 
     setValidated(true);
   };
+
+  console.log(toValue);
+
   return (
-    <Container className="mt-5 mb-5">
+    <Container className="mt-5 mb-5 text-dark">
       <div className={styles.tab_container_wrapper}>
         <Tabs
           defaultActiveKey="buy_ticket"
           id="uncontrolled-tab-example"
-          className="mb-3"
+          className="mb-3 text-dark"
           fill
         >
           <Tab
-            className="border border-danger p-3 rounded"
+            className="border border-danger p-3 rounded text-dark"
             eventKey="buy_ticket"
             title="Buy Ticket"
           >
@@ -81,7 +133,7 @@ export default function TabComponent() {
                     <Form.Select
                       size="sm"
                       className="mb-3"
-                      onChange={(e) => {
+                      onClick={(e) => {
                         setFromValue(e.target.value);
                       }}
                     >
@@ -100,9 +152,13 @@ export default function TabComponent() {
                         setToValue(e.target.value);
                       }}
                     >
-                      <option className="fw-bold">To</option>
+                      <option className="fw-bold bg-white">To</option>
                       {districtNames?.map((districtName, index) => (
-                        <option key={index} value={districtName}>
+                        <option
+                          className="bg-white"
+                          key={index}
+                          value={districtName}
+                        >
                           {districtName}
                         </option>
                       ))}
@@ -135,7 +191,7 @@ export default function TabComponent() {
                   </Col>
                   <Col sm={12} md={6} lg={2} className="mb-3">
                     <Button
-                      variant="primary"
+                      variant="warning"
                       size="sm"
                       type="submit"
                       data-bs-toggle="tooltip"
@@ -150,7 +206,7 @@ export default function TabComponent() {
             </Container>
           </Tab>
           <Tab
-            className="border border-danger p-3 rounded"
+            className="border border-danger p-3 rounded text-dark"
             eventKey="ticket_operation"
             title="Ticket Operation"
           >
@@ -166,7 +222,7 @@ export default function TabComponent() {
               </Col>
               <Col sm={6} className="mb-3">
                 <Button
-                  variant="primary"
+                  variant="warning"
                   type="submit"
                   size="sm"
                   data-bs-toggle="tooltip"
@@ -181,7 +237,7 @@ export default function TabComponent() {
             <div>
               <h3 className="border-bottom pb-2">Reservation Details</h3>
 
-              <Table striped bordered hover>
+              <Table striped bordered hover responsive>
                 <tbody>
                   <tr>
                     <td className="fw-bold">PNR</td>
@@ -227,88 +283,10 @@ export default function TabComponent() {
 
         <Container className="mt-5">
           <h3 className="border-bottom border-danger pb-2">Available Trips</h3>
-          <div className="border rounded p-2">
-            <Row className="border-1">
-              <Col xs={6} sm={4} md={2} lg={2}>
-                <p className="mb-0 pb-0 fs-5">DHK</p>
-                <p className="m-0 p-0">Dhaka</p>
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  className="m-0 p-0"
-                  width="30px"
-                  height="30px"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                  <g
-                    id="SVGRepo_tracerCarrier"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  ></g>
-                  <g id="SVGRepo_iconCarrier">
-                    {" "}
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M12 3C12.5523 3 13 3.44772 13 4V17.5858L18.2929 12.2929C18.6834 11.9024 19.3166 11.9024 19.7071 12.2929C20.0976 12.6834 20.0976 13.3166 19.7071 13.7071L12.7071 20.7071C12.3166 21.0976 11.6834 21.0976 11.2929 20.7071L4.29289 13.7071C3.90237 13.3166 3.90237 12.6834 4.29289 12.2929C4.68342 11.9024 5.31658 11.9024 5.70711 12.2929L11 17.5858V4C11 3.44772 11.4477 3 12 3Z"
-                      fill="#000000"
-                    ></path>{" "}
-                  </g>
-                </svg>
-                <p className="mb-0 pb-0 fs-5">KHL</p>
-                <p className="m-0 p-0">Khulna</p>
-              </Col>
-              <Col xs={6} sm={4} md={2} lg={2} className="d-md-flex">
-                <div>
-                  <p className="mb-0 pb-0 fs-5">Reporting</p>
-                  <p className="m-0 pb-0">06:25 PM</p>
-                  <p className="m-0 pb-0">Thursday</p>
-                  <p className="m-0 pb-0">13 July, 2023</p>
-                </div>
-              </Col>
-              <Col xs={6} sm={4} md={2} lg={2}>
-                <div>
-                  <p className="mb-0 pb-0 fs-5">Departure</p>
-                  <p className="m-0 pb-0">06:25 PM</p>
-                  <p className="m-0 pb-0">Thursday</p>
-                  <p className="m-0 pb-0">13 July, 2023</p>
-                </div>
-              </Col>
-              <Col xs={6} sm={4} md={2} lg={2}>
-                <div>
-                  <p className="mb-0 pb-0 fs-5">Boarding</p>
-                  <p className="m-0 pb-0">NABINAGAR</p>
-                  <p className=""></p>
-                  <p className="mb-0 pb-0 fs-5">Destination</p>
-                  <p className="m-0 pb-0">KHULNA</p>
-                </div>
-              </Col>
-              <Col xs={6} sm={4} md={2} lg={2}>
-                <div>
-                  <p className="mb-0 pb-0 fs-5">Fare</p>
-                  <p className="m-0 pb-0">BDT</p>
-                  <p className=""></p>
-                  <p className="mb-0 pb-0 fs-5 fw-bold">650.00</p>
-                </div>
-              </Col>
-              <Col xs={6} sm={4} md={2} lg={2}>
-                <Button
-                  size="sm"
-                  variant="primary"
-                  className="mt-3"
-                  onClick={() => router.push("/seats")}
-                >
-                  View Seats
-                </Button>{" "}
-              </Col>
-            </Row>
-          </div>
-
           <div className="border rounded p-2 mt-3">
             <Row className="border-1">
               <Col xs={6} sm={4} md={2} lg={2}>
-                <p className="mb-0 pb-0 fs-5">DHK</p>
+                <p className="mb-0 pb-0 fs-5 fw-bold">DHK</p>
                 <p className="m-0 p-0">Dhaka</p>
                 <svg
                   viewBox="0 0 24 24"
@@ -318,7 +296,7 @@ export default function TabComponent() {
                   height="30px"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
                   <g
                     id="SVGRepo_tracerCarrier"
                     stroke-linecap="round"
@@ -334,48 +312,224 @@ export default function TabComponent() {
                     ></path>{" "}
                   </g>
                 </svg>
-                <p className="mb-0 pb-0 fs-5">KHL</p>
+                <p className="mb-0 pb-0 fs-5 fw-bold">KHL</p>
                 <p className="m-0 p-0">Khulna</p>
               </Col>
               <Col xs={6} sm={4} md={2} lg={2} className="d-md-flex">
                 <div>
-                  <p className="mb-0 pb-0 fs-5">Reporting</p>
-                  <p className="m-0 pb-0">06:25 PM</p>
-                  <p className="m-0 pb-0">Thursday</p>
-                  <p className="m-0 pb-0">13 July, 2023</p>
+                  <p className="mb-0 pb-0 fs-5 fw-bold">Reporting</p>
+                  <p className="m-0 pb-0 d-flex align-items-center">
+                    <svg
+                      width="24px"
+                      height="24px"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                      <g
+                        id="SVGRepo_tracerCarrier"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></g>
+                      <g id="SVGRepo_iconCarrier">
+                        {" "}
+                        <path
+                          d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z"
+                          stroke="#000000"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        ></path>{" "}
+                        <path
+                          d="M12 6V12"
+                          stroke="#000000"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        ></path>{" "}
+                        <path
+                          d="M16.24 16.24L12 12"
+                          stroke="#000000"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        ></path>{" "}
+                      </g>
+                    </svg>
+                    <span className="ms-2">06:25 PM</span>
+                  </p>
+                  <p className="m-0 pb-0 d-flex align-items-center">
+                    <svg
+                      width="24px"
+                      height="24px"
+                      viewBox="0 0 24.00 24.00"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                      <g
+                        id="SVGRepo_tracerCarrier"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      ></g>
+                      <g id="SVGRepo_iconCarrier">
+                        {" "}
+                        <path
+                          d="M20 10V7C20 5.89543 19.1046 5 18 5H6C4.89543 5 4 5.89543 4 7V10M20 10V19C20 20.1046 19.1046 21 18 21H6C4.89543 21 4 20.1046 4 19V10M20 10H4M8 3V7M16 3V7"
+                          stroke="#000000"
+                          strokeWidth="0.672"
+                          strokeLinecap="round"
+                        ></path>{" "}
+                        <rect
+                          x="6"
+                          y="12"
+                          width="3"
+                          height="3"
+                          rx="0.5"
+                          fill="#000000"
+                        ></rect>{" "}
+                        <rect
+                          x="10.5"
+                          y="12"
+                          width="3"
+                          height="3"
+                          rx="0.5"
+                          fill="#000000"
+                        ></rect>{" "}
+                        <rect
+                          x="15"
+                          y="12"
+                          width="3"
+                          height="3"
+                          rx="0.5"
+                          fill="#000000"
+                        ></rect>{" "}
+                      </g>
+                    </svg>
+                    <span className="ms-2">13 July, 2023</span>
+                  </p>
                 </div>
               </Col>
               <Col xs={6} sm={4} md={2} lg={2}>
                 <div>
-                  <p className="mb-0 pb-0 fs-5">Departure</p>
-                  <p className="m-0 pb-0">06:25 PM</p>
-                  <p className="m-0 pb-0">Thursday</p>
-                  <p className="m-0 pb-0">13 July, 2023</p>
+                  <p className="mb-0 pb-0 fs-5 fw-bold">Departure</p>
+                  <p className="m-0 pb-0 d-flex align-items-center">
+                    <svg
+                      width="24px"
+                      height="24px"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                      <g
+                        id="SVGRepo_tracerCarrier"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></g>
+                      <g id="SVGRepo_iconCarrier">
+                        {" "}
+                        <path
+                          d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z"
+                          stroke="#000000"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        ></path>{" "}
+                        <path
+                          d="M12 6V12"
+                          stroke="#000000"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        ></path>{" "}
+                        <path
+                          d="M16.24 16.24L12 12"
+                          stroke="#000000"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        ></path>{" "}
+                      </g>
+                    </svg>
+                    <span className="ms-2">06:25 PM</span>
+                  </p>
+                  <p className="m-0 pb-0 d-flex align-items-center">
+                    <svg
+                      width="24px"
+                      height="24px"
+                      viewBox="0 0 24.00 24.00"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                      <g
+                        id="SVGRepo_tracerCarrier"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      ></g>
+                      <g id="SVGRepo_iconCarrier">
+                        {" "}
+                        <path
+                          d="M20 10V7C20 5.89543 19.1046 5 18 5H6C4.89543 5 4 5.89543 4 7V10M20 10V19C20 20.1046 19.1046 21 18 21H6C4.89543 21 4 20.1046 4 19V10M20 10H4M8 3V7M16 3V7"
+                          stroke="#000000"
+                          strokeWidth="0.672"
+                          strokeLinecap="round"
+                        ></path>{" "}
+                        <rect
+                          x="6"
+                          y="12"
+                          width="3"
+                          height="3"
+                          rx="0.5"
+                          fill="#000000"
+                        ></rect>{" "}
+                        <rect
+                          x="10.5"
+                          y="12"
+                          width="3"
+                          height="3"
+                          rx="0.5"
+                          fill="#000000"
+                        ></rect>{" "}
+                        <rect
+                          x="15"
+                          y="12"
+                          width="3"
+                          height="3"
+                          rx="0.5"
+                          fill="#000000"
+                        ></rect>{" "}
+                      </g>
+                    </svg>
+                    <span className="ms-2">13 July, 2023</span>
+                  </p>
                 </div>
               </Col>
               <Col xs={6} sm={4} md={2} lg={2}>
                 <div>
-                  <p className="mb-0 pb-0 fs-5">Boarding</p>
+                  <p className="mb-0 pb-0 fs-5 fw-bold">Boarding</p>
                   <p className="m-0 pb-0">NABINAGAR</p>
                   <p className=""></p>
-                  <p className="mb-0 pb-0 fs-5">Destination</p>
+                  <p className="mb-0 pb-0 fs-5 fw-bold">Destination</p>
                   <p className="m-0 pb-0">KHULNA</p>
                 </div>
               </Col>
               <Col xs={6} sm={4} md={2} lg={2}>
                 <div>
-                  <p className="mb-0 pb-0 fs-5">Fare</p>
+                  <p className="mb-0 pb-0 fs-5 fw-bold">Fare</p>
                   <p className="m-0 pb-0">BDT</p>
                   <p className=""></p>
-                  <p className="mb-0 pb-0 fs-5 fw-bold">650.00</p>
+                  <p className="mb-0 pb-0 fs-5 fw-bold">650.00 TK</p>
                 </div>
               </Col>
               <Col xs={6} sm={4} md={2} lg={2}>
                 <Button
                   size="sm"
-                  variant="primary"
-                  className="mt-3"
-                  onClick={handleShow}
+                  variant="danger"
+                  className="mt-5"
+                  onClick={() => router.push("/seats")}
                 >
                   View Seats
                 </Button>{" "}

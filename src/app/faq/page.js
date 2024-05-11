@@ -6,7 +6,7 @@ import Accordion from "react-bootstrap/Accordion";
 export default function FAQ() {
   return (
     <div className="mt-5 pt-5 mb-5">
-      <Container>
+      <Container className="mt-4">
         <h3 className="border-bottom border-danger">FAQ</h3>
         <div>
           <p className="fs-3">Online Booking Related</p>

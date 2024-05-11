@@ -1,15 +1,14 @@
 // import styles from './page.module.css'
-"use client";
-import HeroNavbar from "@/components/HeroNavbar/HeroNavbar";
 import CarouselsMain from "@/components/HeroSection/CarouselsMain";
 import TicketReserveSection from "@/components/TicketReserveSection/TicketReserveSection";
 import WhyShohaghParibahan from "@/components/WhyShohaghParibahan";
 import Destinations from "@/components/Destinations";
+import MainNavbar from "@/components/MainNavbar";
 
 export default function Home() {
   return (
-    <main>
-      <HeroNavbar></HeroNavbar>
+    <main className="mt-5 pt-3">
+      {/* <MainNavbar /> */}
       <CarouselsMain></CarouselsMain>
       <TicketReserveSection></TicketReserveSection>
       <WhyShohaghParibahan></WhyShohaghParibahan>

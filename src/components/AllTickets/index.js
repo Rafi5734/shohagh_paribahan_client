@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import { Container, Form, InputGroup } from "react-bootstrap";
 import Table from "react-bootstrap/Table";

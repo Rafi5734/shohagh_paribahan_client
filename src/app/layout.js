@@ -5,6 +5,8 @@ import Script from "next/script";
 import Footer from "@/components/Footer";
 import Providers from "@/Store/Providers";
 import MainNavbar from "@/components/MainNavbar/index";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -28,6 +30,7 @@ export default function RootLayout({ children }) {
         <MainNavbar></MainNavbar>
         <Providers>{children}</Providers>
         <Footer></Footer>
+        <ToastContainer />
         <Script
           src="https://kit.fontawesome.com/eb8a4c75b0.js"
           crossOrigin="anonymous"

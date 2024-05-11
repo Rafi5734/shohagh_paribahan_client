@@ -1,23 +1,25 @@
+"use client";
 import React from "react";
-import HeroNavbar from "../HeroNavbar/HeroNavbar";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 const MainNavbar = () => {
   const pathname = usePathname();
 
   return (
     <div>
-      <div class="container-fluid">
-        <nav class="navbar fixed-top navbar-expand-lg navbar-light main_navbar">
-          <div class="container">
-            <img
-              src="https://shohagh.com/assets/img/logo-sp2.png"
-              width="250"
+      <div className="container-fluid">
+        <nav className="navbar fixed-top navbar-expand-lg navbar-light main_navbar">
+          <div className="container ps-0">
+            <Image
+              src="https://shohagh.com/static/media/logo.ff834e7c5592e2a0f5d02eb84356b2fd.svg"
+              width={400}
+              height={50}
               alt="logo"
             />
             <button
-              class="navbar-toggler"
+              className="navbar-toggler ms-3 mb-3"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#navbarSupportedContent"
@@ -25,77 +27,68 @@ const MainNavbar = () => {
               aria-expanded="false"
               aria-label="Toggle navigation"
             >
-              <span class="navbar-toggler-icon"></span>
+              <span className="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item me-3">
+            <div
+              className="collapse navbar-collapse ms-3"
+              id="navbarSupportedContent"
+            >
+              <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li className="nav-item me-3 mt-2">
                   <Link
                     href="/"
                     className={
                       pathname === "/"
-                        ? "m-0 p-0 button_active_color text-decoration-none border-bottom border-danger"
-                        : "m-0 p-0 text-decoration-none"
+                        ? "m-0 p-0 button_active_color text-decoration-none border-bottom border-danger fw-bold"
+                        : "m-0 p-0 text-decoration-none text-dark"
                     }
                   >
                     Home
                   </Link>
                 </li>
-                {/* <li class="nav-item dropdown">
-                    <Link
-                      class="nav-link dropdown-toggle mt-0 pt-0 me-3 text-primary"
-                      href="#"
-                      id="navbarDropdown"
-                      role="button"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      Account
-                    </Link>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <li>
-                        <Link class="dropdown-item" href="/update_profile">
-                          Edit Profile
-                        </Link>
-                      </li>
-                      <li>
-                        <Link class="dropdown-item" href="/change_password">
-                          Change Profile
-                        </Link>
-                      </li>
-                    </ul>
-                  </li> */}
-                <li class="nav-item me-3">
+                <li className="nav-item me-3 mt-2">
                   <Link
                     href="/locations"
                     className={
                       pathname === "/locations"
-                        ? "m-0 p-0 button_active_color text-decoration-none border-bottom border-danger"
-                        : "m-0 p-0 text-decoration-none"
+                        ? "m-0 p-0 button_active_color text-decoration-none border-bottom border-danger fw-bold"
+                        : "m-0 p-0 text-decoration-none text-dark"
                     }
                   >
                     Locations
                   </Link>
                 </li>
-                <li class="nav-item me-3">
+                <li className="nav-item me-3 mt-2">
+                  <Link
+                    href="/dashboard"
+                    className={
+                      pathname === "/dashboard"
+                        ? "m-0 p-0 button_active_color text-decoration-none border-bottom border-danger fw-bold"
+                        : "m-0 p-0 text-decoration-none text-dark"
+                    }
+                  >
+                    Dashboard
+                  </Link>
+                </li>
+                <li className="nav-item me-3 mt-2">
                   <Link
                     href="/contactUs"
                     className={
                       pathname === "/contactUs"
-                        ? "m-0 p-0 button_active_color text-decoration-none border-bottom border-danger"
-                        : "m-0 p-0 text-decoration-none"
+                        ? "m-0 p-0 button_active_color text-decoration-none border-bottom border-danger fw-bold"
+                        : "m-0 p-0 text-decoration-none text-dark"
                     }
                   >
                     Contact Us
                   </Link>
                 </li>
-                <li class="nav-item me-3">
+                <li className="nav-item me-3 mt-2">
                   <Link
                     href="/faq"
                     className={
                       pathname === "/faq"
-                        ? "m-0 p-0 button_active_color text-decoration-none border-bottom border-danger"
-                        : "m-0 p-0 text-decoration-none"
+                        ? "m-0 p-0 button_active_color text-decoration-none border-bottom border-danger fw-bold"
+                        : "m-0 p-0 text-decoration-none text-dark"
                     }
                   >
                     FAQ

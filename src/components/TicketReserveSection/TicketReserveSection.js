@@ -1,3 +1,4 @@
+"use client";
 import { Container } from "react-bootstrap";
 import TabComponent from "./TabComponent/TabComponent";
 import Button from "react-bootstrap/Button";

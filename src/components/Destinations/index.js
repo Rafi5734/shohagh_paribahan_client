@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import styles from "./destinations.module.css";
