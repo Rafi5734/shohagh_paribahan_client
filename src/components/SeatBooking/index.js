@@ -40,24 +40,49 @@ const SeatBooking = () => {
         <h2 className="border-bottom border-danger pb-2 mt-3 text-center">
           All seat plan
         </h2>
-        <div className="d-flex">
-          <div className="d-flex mb-2">
-            <span>available seats</span>
-            <div className="border ms-2 bg-danger p-1 rounded">
-              <p className="text-white m-0">Not booked</p>
+        <div className="d-flex pt-4 justify-content-center align-items-center">
+          <div className="d-flex mb-2 justify-content-center align-items-center">
+            <span className="">Available</span>
+            <div className="border ms-2 bg-secondary p-1 rounded">
+              <p className="text-white m-0 ps-2 pe-2">1</p>
             </div>
           </div>
-          <div className="d-flex mb-2 ms-5">
-            <span>Booked seats</span>
-            <div className="border ms-2 bg-success p-1 rounded">
-              <p className="text-white m-0">Booked</p>
+          <div className="d-flex mb-2 ms-5 justify-content-center align-items-center">
+            <span>Booked</span>
+            <div className="border ms-2 bg-danger ps-1 pe-1 pb-1 rounded">
+              <p className="text-white m-0">
+                <svg
+                  width="20px"
+                  height="20px"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g
+                    id="SVGRepo_tracerCarrier"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  ></g>
+                  <g id="SVGRepo_iconCarrier">
+                    {" "}
+                    <path
+                      d="M19 5L5 19M5.00001 5L19 19"
+                      stroke="#ffffff"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    ></path>{" "}
+                  </g>
+                </svg>
+              </p>
             </div>
           </div>
         </div>
 
         <Row>
           <Col xs={12} sm={12} md={6} lg={4}>
-            <h3 className="text-center">Bus seats plan</h3>
+            <h1 className="text-center mt-3 lead">Bus seats plan</h1>
             <hr />
             <div className="border mb-5 pb-3 pe-0">
               <Container>
@@ -74,11 +99,22 @@ const SeatBooking = () => {
                       <div className={`block ${isToggled ? "active" : ""}`}>
                         <Button
                           size="sm"
-                          //   className="m-0 p-2"
-                          variant={isToggled ? "success" : "danger"}
+                          className="d-flex justify-content-center align-items-center m-0 p-2"
+                          variant={isToggled ? "danger" : "secondary"}
                           onClick={() => toggleBlock(index)}
                         >
-                          Seat:{index + 1}
+                          <svg
+                            width="24px"
+                            height="24px"
+                            className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-vnjz4i"
+                            focusable="false"
+                            aria-hidden="true"
+                            viewBox="0 0 24 24"
+                            data-testid="AirlineSeatReclineNormalIcon"
+                          >
+                            <path d="M7.59 5.41c-.78-.78-.78-2.05 0-2.83.78-.78 2.05-.78 2.83 0 .78.78.78 2.05 0 2.83-.79.79-2.05.79-2.83 0M6 16V7H4v9c0 2.76 2.24 5 5 5h6v-2H9c-1.66 0-3-1.34-3-3m14 4.07L14.93 15H11.5v-3.68c1.4 1.15 3.6 2.16 5.5 2.16v-2.16c-1.66.02-3.61-.87-4.67-2.04l-1.4-1.55c-.19-.21-.43-.38-.69-.5-.29-.14-.62-.23-.96-.23h-.03C8.01 7 7 8.01 7 9.25V15c0 1.66 1.34 3 3 3h5.07l3.5 3.5z"></path>
+                          </svg>
+                          {index + 1}
                         </Button>
                       </div>
                     </Col>

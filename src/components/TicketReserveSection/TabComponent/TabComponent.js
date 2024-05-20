@@ -24,6 +24,7 @@ export default function TabComponent() {
   const [toValue, setToValue] = useState();
   const [journeyDate, setJournalDate] = useState();
   const [coachType, setCoachType] = useState();
+  const [coachTime, setCoachTime] = useState();
   const [checkLocation, setCheckLocation] = useState(true);
 
   const [show, setShow] = useState(false);
@@ -60,7 +61,7 @@ export default function TabComponent() {
       event.stopPropagation();
     }
 
-    if (fromValue && toValue && journeyDate && coachType) {
+    if (fromValue && toValue && journeyDate && coachType && coachTime) {
       if (fromValue === toValue) {
         setCheckLocation(true);
         toast.error("Please select correct location", {
@@ -80,6 +81,7 @@ export default function TabComponent() {
           to: toValue,
           journeyDate: journeyDate,
           coachType: coachType,
+          coachTime: coachTime,
         };
         console.log(ticketData);
         toast.success("See Available Trips", {
@@ -129,10 +131,15 @@ export default function TabComponent() {
             <Container>
               <Form noValidate validated={validated} onSubmit={handleSubmit}>
                 <Row>
-                  <Col sm={12} md={6} lg={2}>
+                  <Col
+                    sm={12}
+                    md={6}
+                    lg={2}
+                    className="d-flex justify-content-center align-items-center"
+                  >
                     <Form.Select
-                      size="sm"
-                      className="mb-3"
+                      size="lg"
+                      className="mb-3 mt-3"
                       onClick={(e) => {
                         setFromValue(e.target.value);
                       }}
@@ -145,9 +152,9 @@ export default function TabComponent() {
                       ))}
                     </Form.Select>
                   </Col>
-                  <Col sm={12} md={6} lg={2} className="mb-3">
+                  <Col sm={12} md={6} lg={2} className="mb-3 mt-3">
                     <Form.Select
-                      size="sm"
+                      size="lg"
                       onChange={(e) => {
                         setToValue(e.target.value);
                       }}
@@ -164,8 +171,8 @@ export default function TabComponent() {
                       ))}
                     </Form.Select>
                   </Col>
-                  <Col sm={12} md={6} lg={2} className="mb-3">
-                    <InputGroup size="sm">
+                  <Col sm={12} md={6} lg={2} className="mb-3 mt-3">
+                    <InputGroup size="lg">
                       <Form.Control
                         type="date"
                         aria-label="Small"
@@ -176,9 +183,9 @@ export default function TabComponent() {
                       />
                     </InputGroup>
                   </Col>
-                  <Col sm={12} md={6} lg={2} className="mb-3">
+                  <Col sm={12} md={6} lg={2} className="mb-3 mt-3">
                     <Form.Select
-                      size="sm"
+                      size="lg"
                       onChange={(e) => {
                         setCoachType(e.target.value);
                       }}
@@ -189,10 +196,27 @@ export default function TabComponent() {
                       <option value="3">Three</option>
                     </Form.Select>
                   </Col>
-                  <Col sm={12} md={6} lg={2} className="mb-3">
+                  <Col sm={12} md={6} lg={2} className="mb-3 mt-3">
+                    <Form.Select
+                      size="lg"
+                      onChange={(e) => {
+                        setCoachTime(e.target.value);
+                      }}
+                    >
+                      <option className="fw-bold">Time</option>
+                      <option value="morning">
+                        Morning (5:00AM - 12:59AM)
+                      </option>
+                      <option value="afternoon">
+                        Afternoon (12:00PM - 5:59PM)
+                      </option>
+                      <option value="night">Night (6:00PM - 12:59PM)</option>
+                    </Form.Select>
+                  </Col>
+                  <Col sm={12} md={6} lg={2} className="mb-3 mt-3">
                     <Button
                       variant="warning"
-                      size="sm"
+                      size="lg"
                       type="submit"
                       data-bs-toggle="tooltip"
                       data-bs-placement="top"
@@ -528,9 +552,20 @@ export default function TabComponent() {
                 <Button
                   size="sm"
                   variant="danger"
-                  className="mt-5"
+                  className="mt-5 text-white"
                   onClick={() => router.push("/seats")}
                 >
+                  <svg
+                    width="24px"
+                    height="24px"
+                    className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-vnjz4i"
+                    focusable="false"
+                    aria-hidden="true"
+                    viewBox="0 0 24 24"
+                    data-testid="AirlineSeatReclineNormalIcon"
+                  >
+                    <path d="M7.59 5.41c-.78-.78-.78-2.05 0-2.83.78-.78 2.05-.78 2.83 0 .78.78.78 2.05 0 2.83-.79.79-2.05.79-2.83 0M6 16V7H4v9c0 2.76 2.24 5 5 5h6v-2H9c-1.66 0-3-1.34-3-3m14 4.07L14.93 15H11.5v-3.68c1.4 1.15 3.6 2.16 5.5 2.16v-2.16c-1.66.02-3.61-.87-4.67-2.04l-1.4-1.55c-.19-.21-.43-.38-.69-.5-.29-.14-.62-.23-.96-.23h-.03C8.01 7 7 8.01 7 9.25V15c0 1.66 1.34 3 3 3h5.07l3.5 3.5z"></path>
+                  </svg>
                   View Seats
                 </Button>{" "}
               </Col>
